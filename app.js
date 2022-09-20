@@ -1,6 +1,8 @@
 'use strict';
 
 let control = document.querySelectorAll('.widget_control'),
+    controlPrev = document.querySelector('.widget_control.prev'),
+    controlNext = document.querySelector('.widget_control.next'),
     container = document.querySelector('.widget_slide'),
     position = container.clientWidth + container.scrollLeft;
 
