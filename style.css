@@ -22,7 +22,6 @@
   --white: hsl(0, 0%, 100%);
   --body-color: hsl(160, 1%, 44%);
   text-rendering: optimizelegibility;
-  background: #000;
 }
 
 ::selection {
