@@ -22,6 +22,7 @@
   --white: hsl(0, 0%, 100%);
   --body-color: hsl(160, 1%, 44%);
   text-rendering: optimizelegibility;
+  background: #000;
 }
 
 ::selection {
@@ -138,12 +139,14 @@ dd {
   border: 1px solid transparent;
   border-radius: 0.45rem;
   display: grid;
-  height: 100%;
-  padding: 0.25rem 0.75rem;
+  flex-shrink: 0;
+  height: 2rem;
+  padding: 0;
   place-content: center;
   transition:
     box-shadow 0.15s ease-in-out,
     opacity 0.05s;
+  width: 2rem;
 }
 
 .widget_control:focus {
@@ -232,7 +235,7 @@ dd {
 @media (max-width: 575.98px) {
 
   .widget {
-    padding: 0 0.25rem;
+    padding: 0;
   }
 
   .widget_slide {
@@ -243,15 +246,22 @@ dd {
   }
 
   .widget_item {
-    padding: 0.25rem 0.875rem 0.25rem 0.625rem;
+    padding: 0.25rem 0.75rem 0.25rem 0.625rem;
   }
 
   .widget_item:first-child > div + div {
-    padding-left: 0.8125rem;
+    padding-left: 0.625rem;
   }
 
   .widget_item:first-child > div + div::before {
-    margin-right: 0.8125rem;
+    margin-right: 0.625rem;
+  }
+
+  .widget_item img,
+  .widget_item svg {
+    height: 0.8125rem;
+    object-fit: contain;
+    width: 1rem;
   }
 }
 

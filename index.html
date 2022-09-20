@@ -43,7 +43,7 @@ header('Content-type: text/html'); ?>
                 </div>
             </div>
             <div class="widget_item">
-                <svg width="17" height="18" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x=".911" y="1.504" width="15.482" height="15.482" rx="1.786" fill="#FF5100" stroke="#fff" stroke-width="1.191"/></svg>
+                <svg width="17" height="18" viewbox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x=".911" y="1.504" width="15.482" height="15.482" rx="1.786" fill="#FF5100" stroke="#fff" stroke-width="1.191"/></svg>
                 <dl>
                     <dt><strong>Hoy no circula</strong></dt>
                     <dd class="d-block">Placa 5 y 6 Holograma 1 y 2</dd>
@@ -60,6 +60,45 @@ header('Content-type: text/html'); ?>
             </svg>
         </button>
     </div>
-    <script src="app-min.js"></script>
+    <script>
+        var control = document.querySelectorAll('.widget_control'),
+            controlPrev = document.querySelector('.widget_control.prev'),
+            controlNext = document.querySelector('.widget_control.next'),
+            container = document.querySelector('.widget_slide'),
+            position = container.clientWidth + container.scrollLeft;
+        control.forEach(el => {
+            el.addEventListener('click', () => {
+                if (el.classList.contains('prev')) {
+                    container.scrollLeft -= container.clientWidth;
+                }
+                if (el.classList.contains('next')) {
+                    container.scrollLeft += container.clientWidth;
+                }
+            });
+        });
+        function toggleControls() {
+            position = container.offsetWidth + container.scrollLeft;
+
+            if (container.scrollLeft <= 10) {
+                controlPrev.classList.add('inactive');
+            } else {
+                controlPrev.classList.remove('inactive');
+            }
+
+            if (position >= (container.scrollWidth - 10)) {
+                controlNext.classList.add('inactive');
+            } else {
+                controlNext.classList.remove('inactive');
+            }
+        }
+        toggleControls();
+        let lastCall = false;
+        container.addEventListener('scroll', () => {
+            if (lastCall) clearTimeout(lastCall);
+            lastCall = setTimeout(() => {
+                toggleControls();
+            }, 100);
+        });
+    </script>
 </body>
 </html>
