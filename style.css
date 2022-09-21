@@ -22,6 +22,7 @@
   --white: hsl(0, 0%, 100%);
   --body-color: hsl(160, 1%, 44%);
   text-rendering: optimizelegibility;
+  background: #000;
 }
 
 ::selection {
@@ -62,8 +63,7 @@ dd {
 }
 
 .widget_slide {
-  display: grid;
-  grid-auto-flow: column;
+  display: flex;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
@@ -71,6 +71,11 @@ dd {
 
 .widget_slide::-webkit-scrollbar {
     display: none;
+}
+
+.widget_slide > div:nth-child(2) {
+  display: grid;
+  grid-auto-flow: column;
 }
 
 .widget_wrapper {
@@ -115,17 +120,17 @@ dd {
   margin-right: 0.35rem;
 }
 
-.widget_item:first-child > div {
+.widget_slide > div:first-child .widget_item > div {
   align-items: center;
   display: flex;
 }
 
-.widget_item:first-child > div + div {
+.widget_slide > div:first-child .widget_item > div + div {
   height: 100%;
   padding-left: 1rem;
 }
 
-.widget_item:first-child > div + div::before {
+.widget_slide > div:first-child .widget_item > div + div::before {
   background-color: currentColor;
   content: '';
   height: 65%;
@@ -165,7 +170,6 @@ dd {
 
 .widget_control.inactive {
   opacity: 0.5;
-  pointer-events: none;
 }
 
 @media (min-width: 998px) {
@@ -193,7 +197,7 @@ dd {
 
 @media (min-width: 768px) {
 
-  .widget_item:first-child {
+  .widget_slide > div:first-child .widget_item {
     font-size: 0.8125rem;
   }
 }
@@ -218,12 +222,12 @@ dd {
 
 @media (min-width: 576px) {
 
-  .widget_item:first-child {
-    margin-right: 0.8125rem;
+  .widget_slide {
+    gap: 0.8125rem;
   }
 
-  .widget_item:last-child {
-    margin-left: 0.5625rem;
+  .widget_slide > div:last-child {
+    gap: 0.5625rem;
   }
 
   .widget_control {
@@ -244,16 +248,25 @@ dd {
     overflow: auto;
   }
 
-  .widget_item {
-    padding: 0.25rem 0.75rem 0.25rem 0.625rem;
+  .widget_slide > div {
+    flex-shrink: 0;
+    width: 100%;
   }
 
-  .widget_item:first-child > div + div {
+  .widget_slide > div:last-child {
+    gap: 0.5rem;
+  }
+
+  .widget_slide > div:first-child .widget_item > div + div {
     padding-left: 0.625rem;
   }
 
-  .widget_item:first-child > div + div::before {
+  .widget_slide > div:first-child .widget_item > div + div::before {
     margin-right: 0.625rem;
+  }
+
+  .widget_item {
+    padding: 0.25rem 0.75rem 0.25rem 0.625rem;
   }
 
   .widget_item img,
