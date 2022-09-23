@@ -81,6 +81,10 @@
                 moveSlider();
             });
         });
+        container.addEventListener('scroll', function() {
+            if (interval) clearInterval(interval);
+            moveSlider();
+        });
         function toggleControls() {
             position = container.offsetWidth + container.scrollLeft;
 
