@@ -48,6 +48,11 @@ dd {
   display: inline;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .widget {
   align-items: center;
   color: var(--body-color);
@@ -119,19 +124,19 @@ dd {
   margin-right: 0.35rem;
 }
 
-.widget_slide > div:first-child .widget_item > div {
+.widget_slide > div:first-child .widget_item a {
   align-items: center;
   display: flex;
 }
 
-.widget_slide > div:first-child .widget_item > div + div {
+.widget_slide > div:first-child .widget_item > a + div {
   height: 100%;
   margin-left: 1rem;
   padding-left: 1rem;
   position: relative;
 }
 
-.widget_slide > div:first-child .widget_item > div + div::before {
+.widget_slide > div:first-child .widget_item > a + div::before {
   background-color: currentColor;
   content: '';
   height: 65%;
@@ -261,7 +266,7 @@ dd {
     gap: 0.5rem;
   }
 
-  .widget_slide > div:first-child .widget_item > div + div {
+  .widget_slide > div:first-child .widget_item > a + div {
     margin-left: 0.625rem;
     padding-left: 0.625rem;
   }

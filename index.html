@@ -18,40 +18,42 @@
         <div class="widget_slide">
             <div>
                 <div class="widget_item">
-                    <div>
+                    <a href="https://www.clima.cdmx.gob.mx/index.xhtml" target="_blank" rel="noreferrer">
                         <img src="assets/img/cloud.svg" alt="">
                         <ul>
                             <li>Lluvia ligera</li>
                             <li><strong>23° C</strong></li>
                         </ul>
-                    </div>
+                    </a>
                     <div>
-                        <img src="assets/img/air.svg" alt="">
-                        <dl>
-                            <div>
-                                <dt>Calidad del aire</dt>
-                                <dd><strong>Buena</strong></dd>
-                            </div>
-                            <div>
-                                <dt>Índice UV</dt>
-                                <dd><strong>6 - Alta</strong></dd>
-                            </div>
-                        </dl>
+                        <a href="https://www.clima.cdmx.gob.mx/index.xhtml" target="_blank" rel="noreferrer">
+                            <img src="assets/img/air.svg" alt="">
+                            <dl>
+                                <div>
+                                    <dt>Calidad del aire</dt>
+                                    <dd><strong>Buena</strong></dd>
+                                </div>
+                                <div>
+                                    <dt>Índice UV</dt>
+                                    <dd><strong>6 - Alta</strong></dd>
+                                </div>
+                            </dl>
+                        </a>
                     </div>
                 </div>
             </div>
             <div>
-                <div class="widget_item">
+                <a href="https://hoynocircula.cdmx.gob.mx/" target="_blank" rel="noreferrer" class="widget_item">
                     <svg width="17" height="18" viewbox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x=".911" y="1.504" width="15.482" height="15.482" rx="1.786" fill="#FF5100" stroke="#fff" stroke-width="1.191"/></svg>
                     <dl>
                         <dt><strong>Hoy no circula</strong></dt>
                         <dd class="d-block">Placa 5 y 6 Holograma 1 y 2</dd>
                     </dl>
-                </div>
-                <div class="widget_item">
+                </a>
+                <a href="https://internetparatodas.cdmx.gob.mx/puntos-wifi" target="_blank" rel="noreferrer" class="widget_item">
                     <img src="assets/img/wifi.svg" alt="">
                     <span>Encuentra <strong class="d-block">puntos WiFi</strong></span>
-                </div>
+                </a>
             </div>
         </div>
         <button class="widget_control next">
@@ -65,15 +67,18 @@
             controlPrev = document.querySelector('.widget_control.prev'),
             controlNext = document.querySelector('.widget_control.next'),
             container = document.querySelector('.widget_slide'),
-            position = container.clientWidth + container.scrollLeft;
+            position = container.clientWidth + container.scrollLeft,
+            interval = false;
         control.forEach(el => {
             el.addEventListener('click', () => {
+                if (interval) clearInterval(interval);
                 if (el.classList.contains('prev')) {
                     container.scrollLeft -= container.clientWidth;
                 }
                 if (el.classList.contains('next')) {
                     container.scrollLeft += container.clientWidth;
                 }
+                moveSlider();
             });
         });
         function toggleControls() {
@@ -99,6 +104,16 @@
                 toggleControls();
             }, 100);
         });
+        function moveSlider() {
+            interval = setInterval(() => {
+                if (container.scrollLeft <= 10) {
+                    container.scrollLeft += container.clientWidth;
+                } else if (position >= (container.scrollWidth - 10)) {
+                    container.scrollLeft -= container.clientWidth;
+                }
+            }, 3000);
+        }
+        moveSlider();
     </script>
 </body>
 </html>
